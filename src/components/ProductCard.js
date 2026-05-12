@@ -10,7 +10,7 @@ function QtyPill({ value, onChange, disabled }) {
         disabled={disabled || value <= 0}
         aria-label="Decrease quantity"
       >
-        −
+        -
       </button>
       <input
         className="qtyInput"
@@ -45,6 +45,8 @@ export default function ProductCard({ business, product, cartLine, setCartQuanti
           src={product.image}
           alt={product.name}
           loading="lazy"
+          fetchpriority="low"
+          decoding="async"
         />
       ) : null}
 

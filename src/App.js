@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { BUSINESS } from './config/business';
@@ -11,9 +11,10 @@ import {
   STORAGE_KEYS,
 } from './lib/storage';
 import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
-import CheckoutPage from './pages/CheckoutPage';
-import AdminPage from './pages/AdminPage';
+
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 function normalizeLoadedProducts(list) {
   const products = Array.isArray(list) ? list : [];
@@ -52,6 +53,22 @@ function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const [theme, setTheme] = useState(() => loadFromStorage(STORAGE_KEYS.theme, 'light'));
+
+  useEffect(() => {
+    const preload = () => {
+      import('./pages/ProductsPage');
+      import('./pages/CheckoutPage');
+      import('./pages/AdminPage');
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(preload, { timeout: 2500 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+
+    const id = window.setTimeout(preload, 1200);
+    return () => window.clearTimeout(id);
+  }, []);
 
   const [products, setProducts] = useState(() => {
     const stored = loadFromStorage(STORAGE_KEYS.products, null);
@@ -408,7 +425,17 @@ function App() {
         theme={theme}
         onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
       />
-      <main className="main">{pageNode}</main>
+      <main className="main">
+        <Suspense
+          fallback={
+            <div className="container pagePad">
+              <div className="card">Loading…</div>
+            </div>
+          }
+        >
+          {pageNode}
+        </Suspense>
+      </main>
       <Footer business={BUSINESS} />
     </div>
   );

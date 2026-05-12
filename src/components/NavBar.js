@@ -58,7 +58,14 @@ export default function NavBar({
       <div className="navInner">
         <button className="brand" onClick={() => onNavigate('home')} type="button">
           <span className="brandMark">
-            <img className="brandLogo" src={brandLogo} alt={`${business.name} logo`} />
+            <img
+              className="brandLogo"
+              src={brandLogo}
+              alt={`${business.name} logo`}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
           </span>
           <span className="brandText">
             <span className="brandName">{business.name}</span>
@@ -101,4 +108,3 @@ export default function NavBar({
     </header>
   );
 }
-

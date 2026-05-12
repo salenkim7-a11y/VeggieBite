@@ -44,7 +44,14 @@ export default function HomePage({ business, products = [], onOrderNow }) {
           </div>
 
           <div className="heroArt" aria-hidden="true">
-            <img className="heroPhoto" src={heroPhoto} alt="" loading="lazy" />
+            <img
+              className="heroPhoto"
+              src={heroPhoto}
+              alt=""
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
             <div className="artCard">
               <div className="artTitle">Veggie Crunch Box</div>
               <div className="artRow">
@@ -95,7 +102,14 @@ export default function HomePage({ business, products = [], onOrderNow }) {
               return (
                 <div key={p.id} className="card offerCard">
                   {p.image ? (
-                    <img className="offerImage" src={p.image} alt={p.name} loading="lazy" />
+                    <img
+                      className="offerImage"
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      fetchpriority="low"
+                      decoding="async"
+                    />
                   ) : null}
                   <div className="offerBody">
                     <div className="muted">{p.category}</div>
