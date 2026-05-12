@@ -17,6 +17,12 @@
   padding: 28px 0 46px;
 }
 
+@media (max-width: 680px) {
+  .pagePad {
+    padding: 20px 0 34px;
+  }
+}
+
 .muted {
   color: var(--muted);
 }

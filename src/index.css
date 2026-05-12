@@ -10,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg);
   color: var(--text);
+  line-height: 1.5;
 }
 
 code {
@@ -19,25 +20,25 @@ code {
 
 :root {
   --bg: #f6f3ea; /* cream */
-  --surface: rgba(255, 255, 255, 0.75);
-  --card: rgba(255, 255, 255, 0.9);
+  --surface: rgba(255, 255, 255, 0.82);
+  --card: rgba(255, 255, 255, 0.94);
   --text: #1a1d1a;
-  --muted: rgba(26, 29, 26, 0.7);
+  --muted: rgba(26, 29, 26, 0.78);
   --green: #2e7d32;
   --green2: #4caf50;
   --brown: #6d4c41;
   --cream: #f6f3ea;
-  --border: rgba(109, 76, 65, 0.18);
+  --border: rgba(109, 76, 65, 0.22);
   --shadow: 0 14px 40px rgba(26, 29, 26, 0.12);
   --radius: 18px;
 }
 
 [data-theme='dark'] {
   --bg: #0f1411;
-  --surface: rgba(26, 29, 26, 0.72);
-  --card: rgba(26, 29, 26, 0.88);
+  --surface: rgba(26, 29, 26, 0.78);
+  --card: rgba(26, 29, 26, 0.92);
   --text: rgba(246, 243, 234, 0.95);
-  --muted: rgba(246, 243, 234, 0.7);
+  --muted: rgba(246, 243, 234, 0.78);
   --green: #6ee87a;
   --green2: #22c55e;
   --brown: #d3b7aa;
@@ -61,6 +62,17 @@ svg,
 video,
 canvas {
   max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.65;
 }
 
 a {
