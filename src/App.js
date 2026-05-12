@@ -414,6 +414,12 @@ function App() {
 
   return (
     <div className="appShell">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-white focus:px-3 focus:py-2 focus:font-semibold focus:shadow"
+      >
+        Skip to content
+      </a>
       <NavBar
         business={BUSINESS}
         page={page}
@@ -425,7 +431,7 @@ function App() {
         theme={theme}
         onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
       />
-      <main className="main">
+      <main id="main" className="main" tabIndex={-1}>
         <Suspense
           fallback={
             <div className="container pagePad">
