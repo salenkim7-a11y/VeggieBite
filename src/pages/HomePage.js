@@ -1,5 +1,5 @@
 import Stars from "../components/Stars";
-import heroPhoto from "../assets/veggie-nachos.jpeg";
+import heroPhoto from "../assets/IMG_8402.jpeg";
 import { formatCurrency } from "../lib/currency";
 import Button from "../components/ui/Button";
 import Card from "../components/ui/Card";
